@@ -1,5 +1,4 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import SectionHeader from "@/components/SectionHeader";
 
 const faqs = [
   { q: "Это безопасно?", a: "Да, полностью. Мы используем официальные способы оплаты и не запрашиваем данные ваших аккаунтов. Подписка оформляется на ваш email." },
@@ -10,15 +9,12 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-  <section className="py-20 md:py-24">
+  <section className="py-24">
     <div className="container max-w-2xl">
-      <SectionHeader
-        eyebrow="FAQ"
-        title="Частые вопросы перед первой оплатой"
-        description="Ясные ответы снимают сомнения и уменьшают трение перед первым заказом."
-      />
+      <p className="text-sm text-primary font-semibold mb-2">FAQ</p>
+      <h2 className="text-3xl md:text-4xl font-bold mb-10">Частые вопросы</h2>
 
-      <Accordion type="single" collapsible className="mt-10 space-y-3">
+      <Accordion type="single" collapsible className="space-y-3">
         {faqs.map((f, i) => (
           <AccordionItem key={i} value={`faq-${i}`} className="glass-card-glow rounded-[1.25rem] px-6 border-none">
             <AccordionTrigger className="text-left font-bold hover:no-underline py-5">{f.q}</AccordionTrigger>

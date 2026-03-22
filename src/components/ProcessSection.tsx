@@ -1,27 +1,24 @@
 import { motion } from "framer-motion";
-import { CreditCard, MessageCircle, ShieldCheck } from "lucide-react";
-import SectionHeader from "@/components/SectionHeader";
+import { MessageCircle, CreditCard, Zap, CheckCircle2 } from "lucide-react";
 
 const steps = [
-  { num: 1, icon: MessageCircle, title: "Выберите сервис", desc: "Оставьте заявку в Telegram или откройте бота и укажите, что нужно подключить." },
-  { num: 2, icon: CreditCard, title: "Получите быстрый расчет", desc: "Сразу показываем ориентир по стоимости, подтверждаем условия и принимаем оплату." },
-  { num: 3, icon: ShieldCheck, title: "Активируем и подтверждаем", desc: "Подключаем сервис на ваш аккаунт и остаемся на связи, если потребуется помощь." },
+  { num: 1, icon: MessageCircle, title: "Напишите нам в Telegram", desc: "Для уточнения деталей" },
+  { num: 2, icon: CreditCard, title: "Произведите оплату", desc: "Удобным способом" },
+  { num: 3, icon: Zap, title: "Начинаем работу", desc: "Сразу после платежа" },
+  { num: 4, icon: CheckCircle2, title: "Проверьте результат", desc: "И пользуйтесь сервисом" },
 ];
 
 const ProcessSection = () => (
-  <section id="process" className="py-20 md:py-24">
+  <section id="process" className="py-24">
     <div className="container">
-      <SectionHeader
-        eyebrow="Как это работает"
-        title="Три коротких шага до активации сервиса"
-        description="Структура экрана помогает быстро понять процесс и перейти к первому действию без лишних решений."
-      />
+      <p className="text-sm text-primary font-semibold mb-2">Как это работает</p>
+      <h2 className="text-3xl md:text-4xl font-bold mb-14">Процесс оплаты</h2>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-3 md:gap-6">
+      <div className="grid gap-6 md:grid-cols-4">
         {steps.map((s, i) => (
           <motion.div
             key={s.num}
-            className="glass-card-glow group relative rounded-[1.75rem] p-6 md:p-7"
+            className="glass-card-glow group relative rounded-[1.5rem] p-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -36,11 +33,11 @@ const ProcessSection = () => (
               >
                 <s.icon className="h-5 w-5" />
               </motion.div>
-              <span className="text-3xl font-black text-primary/15">{String(s.num).padStart(2, "0")}</span>
+              <span className="text-3xl font-black text-primary/15">{String(s.num).padStart(2, '0')}</span>
             </div>
             <div className="mb-4 h-1 w-12 rounded-full bg-primary/25 transition-all duration-500 group-hover:w-20 group-hover:bg-primary" />
             <h3 className="mb-2 text-lg font-bold text-foreground">{s.title}</h3>
-            <p className="text-sm font-medium leading-6 text-foreground/84">{s.desc}</p>
+            <p className="text-sm font-medium text-muted-foreground">{s.desc}</p>
           </motion.div>
         ))}
       </div>

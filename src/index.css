@@ -47,7 +47,6 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6.5rem;
   }
 
   body {
@@ -273,10 +272,6 @@
   .stat-glow {
     box-shadow: 0 0 40px hsl(var(--primary) / 0.1), inset 0 1px 0 hsl(var(--foreground) / 0.03);
   }
-
-  .sticky-cta-offset {
-    padding-bottom: 5.5rem;
-  }
 }
 
 @keyframes marquee {
@@ -353,5 +348,4 @@
   .ambient-orb { display: none; }
   .site-particle { opacity: 0.4; }
   body::before { opacity: 0.15; }
-  .sticky-cta-offset { padding-bottom: 0; }
 }

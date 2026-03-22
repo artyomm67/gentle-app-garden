@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Bot, Clock, Mail, Send, Shield } from "lucide-react";
 
 const CTAFooter = () => (
-  <section id="contacts" className="py-20 pb-32 md:py-24 md:pb-24">
+  <section id="contacts" className="py-24">
     <div className="container max-w-3xl">
       {/* CTA */}
       <motion.div

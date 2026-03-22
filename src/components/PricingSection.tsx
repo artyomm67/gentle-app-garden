@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import SectionHeader from "@/components/SectionHeader";
 
 const plans = [
   { name: "ChatGPT Plus", period: "1 мес", price: "2 990 ₽", hot: true },
@@ -18,14 +17,14 @@ const plans = [
 ];
 
 const PricingSection = () => (
-  <section id="pricing" className="py-20 md:py-24">
+  <section id="pricing" className="py-24">
     <div className="container">
       <div className="mb-12 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
-        <SectionHeader
-          eyebrow="Тарифы"
-          title="Цены на популярные подписки"
-          description="Секция сделана как аккуратная SaaS‑таблица: читаемо на десктопе, удобно на мобильном и без визуального шума."
-        />
+        <div>
+          <p className="mb-2 text-sm font-semibold text-primary">Тарифы</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Цены на подписки</h2>
+          <p className="mt-2 max-w-lg text-muted-foreground">Прозрачные цены без скрытых комиссий. Финальные значения можно заменить позже.</p>
+        </div>
         <motion.a
           href="https://t.me/nowsub_ru?direct"
           target="_blank"
