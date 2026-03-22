@@ -5,12 +5,12 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import { articles } from "@/data/siteContent";
 
 const navLinks = [
-  { label: "Цены", href: "/#pricing" },
-  { label: "Калькулятор", href: "/#calculator" },
-  { label: "Процесс", href: "/#process" },
-  { label: "Отзывы", href: "/#reviews" },
-  { label: "Контакты", href: "/#contacts" },
-];
+{ label: "Цены", href: "/#pricing" },
+{ label: "Калькулятор", href: "/#calculator" },
+{ label: "Процесс", href: "/#process" },
+{ label: "Отзывы", href: "/#reviews" },
+{ label: "Контакты", href: "/#contacts" }];
+
 
 const popularLinks = articles.slice(0, 4);
 
@@ -21,16 +21,16 @@ const Header = () => {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border/50 bg-background/70 backdrop-blur-2xl">
       <div className="container flex h-20 items-center justify-between gap-4">
-        <Link to="/" className="font-display text-xl font-black tracking-[0.12em] md:text-2xl">
+        <Link to="/" className="font-display text-xl font-black tracking-[0.12em] md:text-3xl opacity-100">
           NOW<span className="text-primary">SUB</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-6 rounded-full border border-border/70 bg-card/50 px-6 py-3 shadow-[0_0_40px_hsl(var(--background)/0.24)]">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+          {navLinks.map((link) =>
+          <a key={link.href} href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               {link.label}
             </a>
-          ))}
+          )}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -60,16 +60,16 @@ const Header = () => {
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${popularOpen ? "rotate-180" : ""}`} />
                 </button>
 
-                {popularOpen && (
-                  <div className="rounded-2xl border border-border bg-card/70 p-3">
-                    {popularLinks.map((article) => (
-                      <Link key={article.slug} to={`/articles/${article.slug}`} onClick={() => setOpen(false)} className="flex items-center justify-between rounded-xl px-3 py-3 text-sm text-foreground transition-colors hover:bg-secondary">
+                {popularOpen &&
+                <div className="rounded-2xl border border-border bg-card/70 p-3">
+                    {popularLinks.map((article) =>
+                  <Link key={article.slug} to={`/articles/${article.slug}`} onClick={() => setOpen(false)} className="flex items-center justify-between rounded-xl px-3 py-3 text-sm text-foreground transition-colors hover:bg-secondary">
                         <span className="flex items-center gap-3"><span className="h-2.5 w-2.5 rounded-full bg-primary shadow-[0_0_18px_hsl(var(--primary)/0.8)]" />{article.service}</span>
                         <span className="text-primary">→</span>
                       </Link>
-                    ))}
+                  )}
                   </div>
-                )}
+                }
 
                 <a href="https://t.me/nowsub_bot" target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-4 font-semibold text-foreground">
                   <Bot className="h-4 w-4 text-primary" /> Бот
@@ -97,8 +97,8 @@ const Header = () => {
           </Sheet>
         </div>
       </div>
-    </header>
-  );
+    </header>);
+
 };
 
 export default Header;
