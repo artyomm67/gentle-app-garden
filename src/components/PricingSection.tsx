@@ -20,12 +20,12 @@ const PricingSection = () => (
       <h2 className="text-3xl md:text-4xl font-bold mb-2">Цены на подписки</h2>
       <p className="text-muted-foreground mb-10">Актуальные цены. Точную стоимость уточняйте у менеджера.</p>
 
-      <div className="rounded-xl border border-border overflow-hidden">
-        <div className="grid grid-cols-3 bg-secondary/50 px-6 py-3 text-sm font-semibold text-muted-foreground">
+      <div className="glass-card overflow-hidden rounded-[1.75rem]">
+        <div className="grid grid-cols-3 bg-secondary/50 px-6 py-4 text-sm font-semibold text-muted-foreground">
           <span>Сервис</span><span className="text-center">Период</span><span className="text-right">Цена</span>
         </div>
         {plans.map((p, i) => (
-          <div key={i} className="grid grid-cols-3 px-6 py-4 border-t border-border hover:bg-secondary/30 transition-colors">
+          <div key={i} className="grid grid-cols-3 border-t border-border px-6 py-4 transition-colors hover:bg-secondary/30">
             <span className="flex items-center gap-2 font-medium">
               {p.name}
               {p.hot && <span className="px-2 py-0.5 text-xs rounded-full bg-primary/20 text-primary font-semibold">Хит</span>}
