@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border/50 bg-background/70 backdrop-blur-2xl">
       <div className="container flex h-20 items-center justify-between gap-4">
-        <Link to="/" className="font-display text-xl font-black tracking-[0.12em] md:text-3xl">
+        <Link to="/" className="font-display text-xl font-black tracking-[0.12em] md:text-4xl">
           NOW<span className="text-primary">SUB</span>
         </Link>
 
