@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
 const reviews = [
   { text: "Подключили ChatGPT Plus за 10 минут. Всё работает, рекомендую!", initials: "АМ", name: "Алексей М.", source: "Яндекс Карты" },
@@ -11,13 +12,15 @@ const reviews = [
 ];
 
 const ReviewsSection = () => (
-  <section id="reviews" className="py-24">
+  <section id="reviews" className="py-20 md:py-24">
     <div className="container">
-      <p className="text-sm text-primary font-semibold mb-2">Отзывы</p>
-      <h2 className="text-3xl md:text-4xl font-bold mb-3">Что говорят клиенты</h2>
-      <p className="text-muted-foreground mb-8">Реальные отзывы наших клиентов с проверенных площадок.</p>
+      <SectionHeader
+        eyebrow="Отзывы"
+        title="Built for creators / developers — и это видно по отклику клиентов"
+        description="Пока используем аккуратные placeholder‑отзывы и ссылки на площадки, чтобы блок уже выглядел как готовый social proof раздел."
+      />
 
-      <div className="mb-10 flex flex-wrap gap-3">
+      <div className="mb-10 mt-8 flex flex-wrap gap-3">
         <motion.a
           href="https://www.avito.ru/brands/42fa1c75d7c0ae7dfd81a5a8a151849b?src=sharing"
           target="_blank"
