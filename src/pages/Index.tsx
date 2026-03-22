@@ -5,7 +5,6 @@ import PricingSection from "@/components/PricingSection";
 import CalculatorSection from "@/components/CalculatorSection";
 import ProcessSection from "@/components/ProcessSection";
 import ReviewsSection from "@/components/ReviewsSection";
-import ArticlesSection from "@/components/ArticlesSection";
 import FAQSection from "@/components/FAQSection";
 import CTAFooter from "@/components/CTAFooter";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -35,12 +34,9 @@ const Index = () => (
         <ReviewsSection />
       </ScrollReveal>
       <ScrollReveal delay={0.16}>
-        <ArticlesSection />
-      </ScrollReveal>
-      <ScrollReveal delay={0.18}>
         <FAQSection />
       </ScrollReveal>
-      <ScrollReveal delay={0.2}>
+      <ScrollReveal delay={0.18}>
         <CTAFooter />
       </ScrollReveal>
     </main>

@@ -12,11 +12,28 @@ const ReviewsSection = () => (
     <div className="container">
       <p className="text-sm text-primary font-semibold mb-2">Отзывы</p>
       <h2 className="text-3xl md:text-4xl font-bold mb-2">Что говорят клиенты</h2>
-      <p className="text-muted-foreground mb-10">Пока блок временный — позже перенесем реальные отзывы с Яндекс Карт и Авито.</p>
+      <p className="text-muted-foreground mb-6">Блок уже подготовлен под отзывы из Авито и Яндекс. Ниже оставили ваши основные площадки и красивое оформление карточек.</p>
+
+      <div className="mb-10 flex flex-wrap gap-3">
+        <a href="https://www.avito.ru/brands/42fa1c75d7c0ae7dfd81a5a8a151849b?src=sharing" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80">
+          <span className="text-primary">✦</span> Avito
+        </a>
+        <a href="https://yandex.com/profile/168247323124" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80">
+          <span className="text-primary">✦</span> Яндекс
+        </a>
+      </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {reviews.map((r, i) => (
-          <div key={i} className="glass-card rounded-[1.5rem] p-6 transition-colors hover:border-primary/30">
+          <div key={i} className="glass-card review-card rounded-[1.5rem] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex gap-1 text-primary">
+                {Array.from({ length: 5 }).map((_, starIndex) => (
+                  <span key={starIndex}>★</span>
+                ))}
+              </div>
+              <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">💜 Проверено</span>
+            </div>
             <p className="text-foreground mb-6">«{r.text}»</p>
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 text-primary font-bold text-sm">
@@ -30,10 +47,6 @@ const ReviewsSection = () => (
           </div>
         ))}
       </div>
-
-      <a href="/reviews" className="mt-8 inline-flex rounded-xl border border-border bg-secondary px-5 py-3 font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80">
-        Открыть страницу отзывов
-      </a>
     </div>
   </section>
 );

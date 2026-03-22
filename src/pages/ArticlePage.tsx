@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import CTAFooter from "@/components/CTAFooter";
 import SiteBackdrop from "@/components/SiteBackdrop";
@@ -13,8 +13,8 @@ const ArticlePage = () => {
       <div className="min-h-screen bg-background text-foreground">
         <Header />
         <main className="container pt-32 pb-20">
-          <h1 className="mb-4 text-4xl font-bold">Статья не найдена</h1>
-          <Link to="/articles" className="text-primary hover:opacity-80">Вернуться к статьям</Link>
+          <h1 className="mb-4 text-4xl font-bold">Гайд не найден</h1>
+          <a href="/#services" className="text-primary hover:opacity-80">Вернуться к сервисам</a>
         </main>
       </div>
     );
@@ -26,17 +26,17 @@ const ArticlePage = () => {
       <Header />
       <main className="relative z-10 pt-32 pb-20">
         <article className="container max-w-4xl">
-          <Link to="/articles" className="mb-6 inline-flex rounded-full border border-border bg-secondary px-4 py-2 text-sm text-secondary-foreground transition-colors hover:bg-secondary/80">
-            ← Все статьи
-          </Link>
+          <a href="/#services" className="mb-6 inline-flex rounded-full border border-border bg-secondary px-4 py-2 text-sm text-secondary-foreground transition-colors hover:bg-secondary/80">
+            ← Все сервисы
+          </a>
 
           <div className="glass-card rounded-[2rem] p-8 md:p-10">
-            <div className="mb-5 flex items-center gap-4">
-              <span className="text-5xl">{article.emoji}</span>
+            <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold text-primary">{article.category}</p>
                 <h1 className="text-3xl font-bold leading-tight md:text-4xl">{article.title}</h1>
               </div>
+              <span className="rounded-full border border-primary/25 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">{article.service}</span>
             </div>
 
             <p className="mb-8 text-lg text-muted-foreground">{article.excerpt}</p>
@@ -50,9 +50,24 @@ const ArticlePage = () => {
             </div>
 
             <div className="space-y-6 text-base leading-8 text-foreground/90">
-              <p>Это подготовленная страница под будущую статью. Сейчас здесь размещен временный текст, чтобы уже работали маршруты, меню и переходы из блока «Популярное».</p>
-              <p>Позже можно добавить полноценный SEO-текст, ответы на вопросы, преимущества сервиса, скриншоты и пошаговые инструкции именно для этой нейросети.</p>
-              <p>Если нужно активировать сервис уже сейчас — достаточно написать нам в Telegram или открыть бота и указать нужный тариф.</p>
+              <p>Мы подключаем <strong>{article.service}</strong> в ручном сопровождении: вы пишете нам, мы уточняем тариф, озвучиваем итоговую стоимость и после оплаты быстро активируем подписку.</p>
+              <p>Обычно весь процесс занимает 5–15 минут. Если у сервиса есть особенности по региону, аккаунту или тарифу — мы заранее всё подскажем в переписке.</p>
+              <p>Для быстрого старта достаточно отправить название сервиса, нужный тариф и ваш аккаунт. Если не уверены в плане — поможем выбрать оптимальный вариант.</p>
+            </div>
+
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              <div className="rounded-2xl border border-border bg-secondary/50 p-4">
+                <p className="mb-1 text-sm font-semibold text-primary">Telegram</p>
+                <p className="text-sm text-muted-foreground">https://t.me/nowsub_ru?direct</p>
+              </div>
+              <div className="rounded-2xl border border-border bg-secondary/50 p-4">
+                <p className="mb-1 text-sm font-semibold text-primary">Бот</p>
+                <p className="text-sm text-muted-foreground">@nowsub_bot</p>
+              </div>
+              <div className="rounded-2xl border border-border bg-secondary/50 p-4">
+                <p className="mb-1 text-sm font-semibold text-primary">Почта</p>
+                <p className="text-sm text-muted-foreground">nowsub@mail.ru</p>
+              </div>
             </div>
 
             <div className="mt-10 flex flex-wrap gap-3">

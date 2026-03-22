@@ -21,7 +21,7 @@ const CTAFooter = () => (
       <div className="glass-card mt-12 grid gap-4 rounded-[1.75rem] p-6 text-left md:grid-cols-2">
         <div>
           <p className="mb-2 text-sm font-semibold text-primary">Контакты</p>
-          <p className="font-semibold text-foreground">Email: hello@nowsub.ru</p>
+          <p className="font-semibold text-foreground">Email: nowsub@mail.ru</p>
           <p className="mt-2 text-muted-foreground">Часы работы: 9:00–23:00 по МСК</p>
         </div>
         <div>
