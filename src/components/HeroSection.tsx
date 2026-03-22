@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { ArrowDown, Bot, Send, Shield, Sparkles, Users, Zap } from "lucide-react";
+import { ArrowDown, Bot, Globe2, Send, Shield, Sparkles, Zap } from "lucide-react";
 import cardImage from "@/assets/card-purple.png";
 
 const stats = [
-  { icon: Users, value: "2 500+", label: "клиентов" },
-  { icon: Zap, value: "5–15 мин", label: "на подключение" },
-  { icon: Shield, value: "100%", label: "безопасно" },
+  { icon: Globe2, value: "Оплата", label: "Из любой страны" },
+  { icon: Zap, value: "5–15 Мин", label: "На подключение" },
+  { icon: Shield, value: "100%", label: "Безопасно" },
 ];
 
-const phrases = ["здесь и сейчас", "надежно"];
+const phrases = ["Здесь и сейчас", "Надежно"];
 
 const heroParticles = [
   { left: "10%", top: "14%", size: 7, delay: "0s", duration: "8.8s" },
@@ -69,7 +69,7 @@ const HeroSection = () => {
       <div className="container grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr]">
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-4 py-2 text-sm text-primary shadow-[0_0_32px_hsl(var(--primary)/0.15)]">
-            <Sparkles className="h-4 w-4" /> Работаем ежедневно 9:00–23:00 МСК
+            <Sparkles className="h-4 w-4" /> NOWSUB · Подключение зарубежных сервисов
           </div>
 
           <div className="space-y-5">
@@ -84,25 +84,32 @@ const HeroSection = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-stretch">
-            <div className="flex flex-col gap-3 sm:min-w-[260px]">
-              <a href="https://t.me/nowsub_ru?direct" target="_blank" rel="noreferrer" className="button-glow inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5">
-                <Send className="h-4 w-4" /> Написать в Telegram
-              </a>
-              <a href="/#pricing" className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card/70 px-6 py-4 font-semibold text-foreground transition-colors hover:bg-secondary">
-                <ArrowDown className="h-4 w-4 text-primary" /> Цены
-              </a>
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_220px]">
+            <div className="glass-card rounded-[1.6rem] p-3">
+              <div className="grid gap-3 sm:grid-cols-[1.2fr_0.8fr]">
+                <a href="https://t.me/nowsub_ru?direct" target="_blank" rel="noreferrer" className="button-glow inline-flex min-h-[72px] items-center justify-center gap-2 rounded-[1.2rem] bg-primary px-6 py-4 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5">
+                  <Send className="h-4 w-4" /> Написать в Telegram
+                </a>
+                <a href="https://t.me/nowsub_bot" target="_blank" rel="noreferrer" className="inline-flex min-h-[72px] items-center justify-center gap-2 rounded-[1.2rem] border border-border bg-secondary px-6 py-4 font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80">
+                  <Bot className="h-4 w-4" /> Открыть бота
+                </a>
+                <a href="/#pricing" className="inline-flex min-h-[60px] items-center justify-center gap-2 rounded-[1.2rem] border border-primary/30 bg-primary/10 px-6 py-4 font-semibold text-foreground transition-colors hover:bg-primary/15 sm:col-span-2">
+                  <ArrowDown className="h-4 w-4 text-primary" /> Перейти к ценам
+                </a>
+              </div>
             </div>
 
-            <a href="https://t.me/nowsub_bot" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-secondary px-6 py-4 font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80">
-              <Bot className="h-4 w-4" /> Открыть бота
-            </a>
+            <div className="glass-card flex flex-col justify-center rounded-[1.6rem] p-5">
+              <p className="mb-2 text-sm font-semibold text-primary">Часы Работы</p>
+              <p className="text-2xl font-black">9:00–23:00</p>
+              <p className="text-sm text-muted-foreground">По МСК, без выходных</p>
+            </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
             {stats.map((stat) => (
               <div key={stat.label} className="glass-card rounded-[1.25rem] p-4">
-                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/12 text-primary">
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/12 text-primary shadow-[0_0_32px_hsl(var(--primary)/0.2)]">
                   <stat.icon className="h-5 w-5" />
                 </div>
                 <div className="text-2xl font-black">{stat.value}</div>

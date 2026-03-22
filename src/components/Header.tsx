@@ -8,8 +8,7 @@ const navLinks = [
   { label: "Цены", href: "/#pricing" },
   { label: "Калькулятор", href: "/#calculator" },
   { label: "Процесс", href: "/#process" },
-  { label: "Отзывы", href: "/reviews" },
-  { label: "Статьи", href: "/articles" },
+  { label: "Отзывы", href: "/#reviews" },
   { label: "Контакты", href: "/#contacts" },
 ];
 
@@ -65,7 +64,7 @@ const Header = () => {
                   <div className="rounded-2xl border border-border bg-card/70 p-3">
                     {popularLinks.map((article) => (
                       <Link key={article.slug} to={`/articles/${article.slug}`} onClick={() => setOpen(false)} className="flex items-center justify-between rounded-xl px-3 py-3 text-sm text-foreground transition-colors hover:bg-secondary">
-                        <span className="flex items-center gap-3"><span>{article.emoji}</span>{article.title.replace("Как оплатить ", "").replace(" из России в 2026 году", "")}</span>
+                        <span className="flex items-center gap-3"><span className="h-2.5 w-2.5 rounded-full bg-primary shadow-[0_0_18px_hsl(var(--primary)/0.8)]" />{article.service}</span>
                         <span className="text-primary">→</span>
                       </Link>
                     ))}
@@ -78,12 +77,9 @@ const Header = () => {
                 <a href="/#calculator" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-4 font-semibold text-foreground">
                   <Calculator className="h-4 w-4 text-primary" /> Калькулятор
                 </a>
-                <Link to="/reviews" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-4 font-semibold text-foreground">
+                <a href="/#reviews" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-4 font-semibold text-foreground">
                   <MessageSquare className="h-4 w-4 text-primary" /> Отзывы
-                </Link>
-                <Link to="/articles" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-4 font-semibold text-foreground">
-                  <Newspaper className="h-4 w-4 text-primary" /> Статьи
-                </Link>
+                </a>
                 <a href="/#contacts" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-4 font-semibold text-foreground">
                   <FileText className="h-4 w-4 text-primary" /> Контакты
                 </a>

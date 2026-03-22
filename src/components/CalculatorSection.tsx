@@ -40,10 +40,13 @@ const CalculatorSection = () => {
             </div>
           </div>
 
-          <div className="pt-4 border-t border-border">
-            <div className="flex justify-between items-end mb-4">
-              <span className="text-muted-foreground">Итоговая цена</span>
-              <span className="text-3xl font-black">{total.toLocaleString("ru-RU")} ₽</span>
+          <div className="border-t border-border pt-4">
+            <div className="result-panel mb-5 flex flex-col gap-3 rounded-[1.5rem] border border-primary/25 bg-primary/10 p-5 shadow-[0_0_50px_hsl(var(--primary)/0.16)] sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <span className="text-sm font-semibold text-primary">Итоговая цена</span>
+                <p className="mt-1 text-sm text-muted-foreground">Финальная сумма с учетом комиссии и курса</p>
+              </div>
+              <span className="text-4xl font-black text-foreground">{total.toLocaleString("ru-RU")} ₽</span>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <a href="https://t.me/nowsub_ru?direct" target="_blank" rel="noreferrer" className="button-glow block w-full rounded-xl bg-primary py-3 text-center font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5">
@@ -67,7 +70,7 @@ const CalculatorSection = () => {
             </div>
           </div>
 
-          <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm shadow-[0_0_40px_hsl(var(--primary)/0.08)]">
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm shadow-[0_0_40px_hsl(var(--primary)/0.08)]">
             <span className="font-semibold text-primary">Гарантия:</span>{" "}
             <span className="text-muted-foreground">Возврат средств если подписка не активирована</span>
           </div>
