@@ -3,20 +3,20 @@ import { ArrowDown, Bot, Globe2, Send, Shield, Sparkles, Zap } from "lucide-reac
 import cardImage from "@/assets/card-purple.png";
 
 const stats = [
-  { icon: Globe2, value: "Оплата", label: "Из любой страны" },
-  { icon: Zap, value: "5–15 Мин", label: "На подключение" },
-  { icon: Shield, value: "100%", label: "Безопасно" },
-];
+{ icon: Globe2, value: "Оплата", label: "Из любой страны" },
+{ icon: Zap, value: "5–15 Мин", label: "На подключение" },
+{ icon: Shield, value: "100%", label: "Безопасно" }];
+
 
 const phrases = ["Здесь и сейчас", "Надежно"];
 
 const heroParticles = [
-  { left: "10%", top: "14%", size: 7, delay: "0s", duration: "8.8s" },
-  { left: "22%", top: "70%", size: 10, delay: "1.4s", duration: "10s" },
-  { left: "45%", top: "24%", size: 6, delay: "0.8s", duration: "8.2s" },
-  { left: "74%", top: "18%", size: 9, delay: "1.9s", duration: "9.8s" },
-  { left: "84%", top: "62%", size: 7, delay: "2.2s", duration: "11.4s" },
-];
+{ left: "10%", top: "14%", size: 7, delay: "0s", duration: "8.8s" },
+{ left: "22%", top: "70%", size: 10, delay: "1.4s", duration: "10s" },
+{ left: "45%", top: "24%", size: 6, delay: "0.8s", duration: "8.2s" },
+{ left: "74%", top: "18%", size: 9, delay: "1.9s", duration: "9.8s" },
+{ left: "84%", top: "62%", size: 7, delay: "2.2s", duration: "11.4s" }];
+
 
 const HeroSection = () => {
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -51,20 +51,20 @@ const HeroSection = () => {
 
   return (
     <section className="relative overflow-hidden pt-32 pb-20 dot-grid">
-      {heroParticles.map((particle, index) => (
-        <span
-          key={index}
-          className="site-particle"
-          style={{
-            left: particle.left,
-            top: particle.top,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            animationDelay: particle.delay,
-            animationDuration: particle.duration,
-          }}
-        />
-      ))}
+      {heroParticles.map((particle, index) =>
+      <span
+        key={index}
+        className="site-particle"
+        style={{
+          left: particle.left,
+          top: particle.top,
+          width: `${particle.size}px`,
+          height: `${particle.size}px`,
+          animationDelay: particle.delay,
+          animationDuration: particle.duration
+        }} />
+
+      )}
 
       <div className="container grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr]">
         <div className="space-y-8">
@@ -100,22 +100,22 @@ const HeroSection = () => {
             </div>
 
             <div className="glass-card flex flex-col justify-center rounded-[1.6rem] p-5">
-              <p className="mb-2 text-sm font-semibold text-primary">Часы Работы</p>
+              <p className="mb-2 font-semibold text-primary text-base">Часы Работы</p>
               <p className="text-2xl font-black">9:00–23:00</p>
               <p className="text-sm text-muted-foreground">По МСК, без выходных</p>
             </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
-            {stats.map((stat) => (
-              <div key={stat.label} className="glass-card rounded-[1.25rem] p-4">
+            {stats.map((stat) =>
+            <div key={stat.label} className="glass-card rounded-[1.25rem] p-4">
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/12 text-primary shadow-[0_0_32px_hsl(var(--primary)/0.2)]">
                   <stat.icon className="h-5 w-5" />
                 </div>
                 <div className="text-2xl font-black">{stat.value}</div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
               </div>
-            ))}
+            )}
           </div>
         </div>
 
@@ -125,8 +125,8 @@ const HeroSection = () => {
           <img src={cardImage} alt="Банковская карта NOWSUB с мягкой фиолетовой подсветкой" className="hero-float relative z-10 w-[520px] max-w-full drop-shadow-[0_30px_120px_hsl(var(--primary)/0.45)]" />
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroSection;
