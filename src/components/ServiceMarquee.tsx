@@ -5,10 +5,10 @@ const services = [
 ];
 
 const ServiceMarquee = () => (
-  <section className="py-6 border-y border-border/50 overflow-hidden bg-muted/30">
+  <section className="overflow-hidden border-y border-border/50 bg-muted/30 py-6 backdrop-blur-sm">
     <div className="animate-marquee flex gap-4 whitespace-nowrap">
       {[...services, ...services].map((s, i) => (
-        <span key={i} className="inline-flex items-center px-5 py-2 rounded-full border border-border bg-secondary text-sm text-secondary-foreground">
+        <span key={i} className="inline-flex items-center rounded-full border border-border bg-secondary px-5 py-2 text-sm font-semibold text-secondary-foreground shadow-[0_10px_30px_hsl(var(--background)/0.18)]">
           {s}
         </span>
       ))}

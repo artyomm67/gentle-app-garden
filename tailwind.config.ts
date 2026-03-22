@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
+        display: ['Unbounded', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -22,6 +23,9 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        surface: "hsl(var(--surface))",
+        "surface-strong": "hsl(var(--surface-strong))",
+        "primary-glow": "hsl(var(--primary-glow))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -75,10 +79,36 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0px) rotate(-2deg)" },
+          "50%": { transform: "translateY(-14px) rotate(2deg)" },
+        },
+        drift: {
+          "0%": { transform: "translate3d(0, 0, 0) scale(1)", opacity: "0.25" },
+          "50%": { transform: "translate3d(14px, -18px, 0) scale(1.15)", opacity: "0.8" },
+          "100%": { transform: "translate3d(-8px, -34px, 0) scale(0.92)", opacity: "0.12" },
+        },
+        sway: {
+          "0%, 100%": { transform: "translate3d(0, 0, 0)" },
+          "50%": { transform: "translate3d(0, -10px, 0)" },
+        },
+        glow: {
+          "0%, 100%": { boxShadow: "0 0 30px hsl(var(--primary) / 0.18)" },
+          "50%": { boxShadow: "0 0 70px hsl(var(--primary) / 0.38)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "200% 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        float: "float 7s ease-in-out infinite",
+        drift: "drift 10s ease-in-out infinite",
+        sway: "sway 8s ease-in-out infinite",
+        glow: "glow 3.2s ease-in-out infinite",
+        shimmer: "shimmer 4s linear infinite",
       },
     },
   },

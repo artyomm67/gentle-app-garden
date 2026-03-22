@@ -12,11 +12,11 @@ const ReviewsSection = () => (
     <div className="container">
       <p className="text-sm text-primary font-semibold mb-2">Отзывы</p>
       <h2 className="text-3xl md:text-4xl font-bold mb-2">Что говорят клиенты</h2>
-      <p className="text-muted-foreground mb-10">Реальные отзывы наших клиентов</p>
+      <p className="text-muted-foreground mb-10">Пока блок временный — позже перенесем реальные отзывы с Яндекс Карт и Авито.</p>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {reviews.map((r, i) => (
-          <div key={i} className="p-6 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors">
+          <div key={i} className="glass-card rounded-[1.5rem] p-6 transition-colors hover:border-primary/30">
             <p className="text-foreground mb-6">«{r.text}»</p>
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 text-primary font-bold text-sm">
@@ -30,6 +30,10 @@ const ReviewsSection = () => (
           </div>
         ))}
       </div>
+
+      <a href="/reviews" className="mt-8 inline-flex rounded-xl border border-border bg-secondary px-5 py-3 font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80">
+        Открыть страницу отзывов
+      </a>
     </div>
   </section>
 );

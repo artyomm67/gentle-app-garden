@@ -13,13 +13,13 @@ const ProcessSection = () => (
 
       <div className="grid md:grid-cols-4 gap-6">
         {steps.map((s) => (
-          <div key={s.num} className="relative p-6 rounded-xl border border-border bg-card hover:border-primary/40 transition-colors group">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary font-bold text-lg mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+          <div key={s.num} className="glass-card group relative rounded-[1.5rem] p-6 transition-colors hover:border-primary/40">
+            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-lg font-bold text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
               {s.num}
             </div>
             <p className="text-xs text-muted-foreground mb-1">ШАГ {s.num}</p>
-            <h3 className="font-semibold mb-1">{s.title}</h3>
-            <p className="text-sm text-muted-foreground">{s.desc}</p>
+            <h3 className="mb-2 text-lg font-bold text-foreground">{s.title}</h3>
+            <p className="text-sm font-semibold text-foreground/90">{s.desc}</p>
           </div>
         ))}
       </div>
