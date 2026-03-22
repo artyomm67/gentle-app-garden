@@ -27,7 +27,7 @@ const Header = () => {
 
         <nav className="hidden lg:flex items-center gap-6 rounded-full border border-border/70 bg-card/50 px-6 py-3 shadow-[0_0_40px_hsl(var(--background)/0.24)]">
           {navLinks.map((link) =>
-          <a key={link.href} href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+          <a key={link.href} href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground font-bold">
               {link.label}
             </a>
           )}
