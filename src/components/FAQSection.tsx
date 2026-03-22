@@ -9,16 +9,16 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-  <section className="py-20">
+  <section className="py-24">
     <div className="container max-w-2xl">
       <p className="text-sm text-primary font-semibold mb-2">FAQ</p>
       <h2 className="text-3xl md:text-4xl font-bold mb-10">Частые вопросы</h2>
 
       <Accordion type="single" collapsible className="space-y-3">
         {faqs.map((f, i) => (
-          <AccordionItem key={i} value={`faq-${i}`} className="glass-card rounded-[1.25rem] px-6">
-            <AccordionTrigger className="text-left font-semibold hover:no-underline">{f.q}</AccordionTrigger>
-            <AccordionContent className="text-muted-foreground">{f.a}</AccordionContent>
+          <AccordionItem key={i} value={`faq-${i}`} className="glass-card-glow rounded-[1.25rem] px-6 border-none">
+            <AccordionTrigger className="text-left font-bold hover:no-underline py-5">{f.q}</AccordionTrigger>
+            <AccordionContent className="text-muted-foreground pb-5">{f.a}</AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { Bot, Send } from "lucide-react";
 
 const currencies = [
   { code: "USD", label: "Доллар ($)", rate: 91.77 },
@@ -16,62 +18,100 @@ const CalculatorSection = () => {
   const total = Math.round(baseRub + commission);
 
   return (
-    <section id="calculator" className="py-20">
+    <section id="calculator" className="py-24">
       <div className="container max-w-2xl">
         <p className="text-sm text-primary font-semibold mb-2">Инструменты</p>
         <h2 className="text-3xl md:text-4xl font-bold mb-10">Калькулятор комиссии</h2>
 
-        <div className="glass-card space-y-6 rounded-[1.75rem] p-8">
+        <div className="glass-card-glow space-y-6 rounded-[2rem] p-8">
           <div>
-            <label className="block text-sm text-muted-foreground mb-2">Введите сумму</label>
-            <input type="number" min={1} value={amount} onChange={(e) => setAmount(Number(e.target.value))}
-              className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-lg font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
+            <label className="block text-sm font-medium text-muted-foreground mb-2">Введите сумму</label>
+            <input
+              type="number"
+              min={1}
+              value={amount}
+              onChange={(e) => setAmount(Number(e.target.value))}
+              className="w-full rounded-xl border border-border bg-secondary/60 px-5 py-3.5 text-lg font-bold text-foreground transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50 focus:shadow-[0_0_30px_hsl(var(--primary)/0.15)]"
+            />
           </div>
 
           <div>
-            <label className="block text-sm text-muted-foreground mb-2">Валюта</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-2">Валюта</label>
             <div className="flex gap-2">
               {currencies.map((c) => (
-                <button key={c.code} onClick={() => setCurrency(c.code)}
-                  className={`flex-1 rounded-xl border py-2.5 text-sm font-medium transition-colors ${currency === c.code ? "bg-primary text-primary-foreground border-primary" : "bg-secondary border-border text-secondary-foreground hover:bg-secondary/80"}`}>
-                  {c.code} {c.label}
-                </button>
+                <motion.button
+                  key={c.code}
+                  onClick={() => setCurrency(c.code)}
+                  className={`flex-1 rounded-xl border py-3 text-sm font-bold transition-all ${
+                    currency === c.code
+                      ? "bg-primary text-primary-foreground border-primary shadow-[0_0_30px_hsl(var(--primary)/0.25)]"
+                      : "bg-secondary/60 border-border text-secondary-foreground hover:bg-secondary/80 hover:border-primary/20"
+                  }`}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  {c.code}
+                </motion.button>
               ))}
             </div>
           </div>
 
-          <div className="border-t border-border pt-4">
-            <div className="result-panel mb-5 flex flex-col gap-3 rounded-[1.5rem] border border-primary/25 bg-primary/10 p-5 shadow-[0_0_50px_hsl(var(--primary)/0.16)] sm:flex-row sm:items-end sm:justify-between">
+          {/* Result — prominent */}
+          <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-primary/8 p-6 shadow-[0_0_60px_hsl(var(--primary)/0.12)]">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary-glow/5" />
+            <div className="relative flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <span className="text-sm font-semibold text-primary">Итоговая цена</span>
-                <p className="mt-1 text-sm text-muted-foreground">Финальная сумма с учетом комиссии и курса</p>
+                <span className="text-sm font-bold text-primary">Итоговая цена</span>
+                <p className="text-sm text-muted-foreground">С учётом комиссии и курса</p>
               </div>
-              <span className="text-4xl font-black text-foreground">{total.toLocaleString("ru-RU")} ₽</span>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <a href="https://t.me/nowsub_ru?direct" target="_blank" rel="noreferrer" className="button-glow block w-full rounded-xl bg-primary py-3 text-center font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5">
-                Написать в Telegram
-              </a>
-              <a href="https://t.me/nowsub_bot" target="_blank" rel="noreferrer" className="block w-full rounded-xl border border-border bg-secondary py-3 text-center font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80">
-                Открыть бота
-              </a>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div className="rounded-xl bg-secondary p-3">
-              <div className="text-muted-foreground mb-1">Курс</div>
-              <div className="font-semibold">1 {cur.code} = {cur.rate} RUB</div>
-            </div>
-            <div className="rounded-xl bg-secondary p-3">
-              <div className="text-muted-foreground mb-1">Комиссия</div>
-              <div className="font-semibold">до 30 {cur.code} — 1 000 RUB</div>
-              <div className="font-semibold">от 30 {cur.code} — 30%</div>
+              <motion.span
+                key={total}
+                className="text-5xl font-black text-foreground"
+                initial={{ scale: 1.1, opacity: 0.5 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {total.toLocaleString("ru-RU")} ₽
+              </motion.span>
             </div>
           </div>
 
-            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm shadow-[0_0_40px_hsl(var(--primary)/0.08)]">
-            <span className="font-semibold text-primary">Гарантия:</span>{" "}
+          <div className="grid gap-3 sm:grid-cols-2">
+            <motion.a
+              href="https://t.me/nowsub_ru?direct"
+              target="_blank"
+              rel="noreferrer"
+              className="button-glow flex items-center justify-center gap-2 rounded-xl bg-primary py-3.5 font-bold text-primary-foreground"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Send className="h-4 w-4" /> Написать в Telegram
+            </motion.a>
+            <motion.a
+              href="https://t.me/nowsub_bot"
+              target="_blank"
+              rel="noreferrer"
+              className="button-secondary-glow flex items-center justify-center gap-2 rounded-xl border border-border bg-secondary/80 py-3.5 font-bold text-secondary-foreground"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Bot className="h-4 w-4" /> Открыть бота
+            </motion.a>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="rounded-xl bg-secondary/50 p-4">
+              <div className="text-muted-foreground mb-1 text-xs font-medium">Курс</div>
+              <div className="font-bold">1 {cur.code} = {cur.rate} ₽</div>
+            </div>
+            <div className="rounded-xl bg-secondary/50 p-4">
+              <div className="text-muted-foreground mb-1 text-xs font-medium">Комиссия</div>
+              <div className="font-bold">до 30$ — 1 000 ₽</div>
+              <div className="font-bold">от 30$ — 30%</div>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-primary/15 bg-primary/5 p-4 text-sm animate-breathe">
+            <span className="font-bold text-primary">Гарантия:</span>{" "}
             <span className="text-muted-foreground">Возврат средств если подписка не активирована</span>
           </div>
         </div>

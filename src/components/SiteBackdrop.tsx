@@ -1,12 +1,14 @@
 const particles = [
-  { left: "6%", top: "14%", size: 10, delay: "0s", duration: "8s" },
-  { left: "14%", top: "62%", size: 14, delay: "1.3s", duration: "10s" },
-  { left: "26%", top: "22%", size: 8, delay: "0.7s", duration: "7.2s" },
-  { left: "43%", top: "76%", size: 12, delay: "2s", duration: "11s" },
-  { left: "56%", top: "18%", size: 9, delay: "1.1s", duration: "8.5s" },
-  { left: "68%", top: "56%", size: 11, delay: "2.4s", duration: "10.5s" },
-  { left: "82%", top: "24%", size: 16, delay: "1.7s", duration: "12s" },
-  { left: "90%", top: "72%", size: 10, delay: "2.9s", duration: "9.4s" },
+  { left: "5%", top: "12%", size: 6, delay: "0s", duration: "14s" },
+  { left: "15%", top: "58%", size: 8, delay: "1.5s", duration: "16s" },
+  { left: "28%", top: "20%", size: 5, delay: "0.8s", duration: "12s" },
+  { left: "42%", top: "72%", size: 7, delay: "2.2s", duration: "18s" },
+  { left: "58%", top: "15%", size: 6, delay: "1.2s", duration: "14s" },
+  { left: "70%", top: "52%", size: 9, delay: "2.8s", duration: "16s" },
+  { left: "85%", top: "22%", size: 5, delay: "1.8s", duration: "20s" },
+  { left: "92%", top: "68%", size: 7, delay: "3.2s", duration: "15s" },
+  { left: "35%", top: "88%", size: 6, delay: "0.5s", duration: "17s" },
+  { left: "78%", top: "82%", size: 5, delay: "2.5s", duration: "13s" },
 ];
 
 const SiteBackdrop = () => (
@@ -14,17 +16,17 @@ const SiteBackdrop = () => (
     <div className="ambient-orb ambient-orb-1" />
     <div className="ambient-orb ambient-orb-2" />
     <div className="ambient-orb ambient-orb-3" />
-    {particles.map((particle, index) => (
+    {particles.map((p, i) => (
       <span
-        key={index}
+        key={i}
         className="site-particle"
         style={{
-          left: particle.left,
-          top: particle.top,
-          width: `${particle.size}px`,
-          height: `${particle.size}px`,
-          animationDelay: particle.delay,
-          animationDuration: particle.duration,
+          left: p.left,
+          top: p.top,
+          width: `${p.size}px`,
+          height: `${p.size}px`,
+          animationDelay: p.delay,
+          animationDuration: p.duration,
         }}
       />
     ))}

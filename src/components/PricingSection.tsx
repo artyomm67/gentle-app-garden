@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
+
 const plans = [
   { name: "ChatGPT Plus", period: "1 мес", price: "2 990 ₽", hot: true },
   { name: "ChatGPT Pro", period: "1 мес", price: "28 990 ₽" },
@@ -14,34 +17,61 @@ const plans = [
 ];
 
 const PricingSection = () => (
-  <section id="pricing" className="py-20">
+  <section id="pricing" className="py-24">
     <div className="container">
-      <p className="mb-2 text-sm font-semibold text-primary">Тарифы</p>
-      <h2 className="mb-2 text-3xl font-bold md:text-4xl">Цены на подписки</h2>
-      <p className="mb-10 text-muted-foreground">Временная таблица для запуска. Финальные значения позже можно заменить без переделки дизайна.</p>
+      <div className="mb-12 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="mb-2 text-sm font-semibold text-primary">Тарифы</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Цены на подписки</h2>
+          <p className="mt-2 max-w-lg text-muted-foreground">Прозрачные цены без скрытых комиссий. Финальные значения можно заменить позже.</p>
+        </div>
+        <motion.a
+          href="https://t.me/nowsub_ru?direct"
+          target="_blank"
+          rel="noreferrer"
+          className="button-glow inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-bold text-primary-foreground"
+          whileHover={{ y: -2, scale: 1.02 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          <Sparkles className="h-4 w-4" /> Заказать подписку
+        </motion.a>
+      </div>
 
-      <div className="pricing-shell relative overflow-hidden rounded-[2rem] border border-border/80 p-1">
-        <div className="absolute inset-x-10 top-0 h-28 rounded-full bg-primary/20 blur-3xl" />
-        <div className="glass-card relative overflow-hidden rounded-[1.7rem]">
-          <div className="grid grid-cols-3 bg-secondary/40 px-6 py-4 text-sm font-semibold text-muted-foreground">
+      <div className="pricing-shell relative overflow-hidden rounded-[2rem] border border-border/60 p-[2px]">
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-primary/10 to-transparent" />
+        <div className="glass-card relative overflow-hidden rounded-[1.85rem]">
+          <div className="grid grid-cols-3 bg-primary/5 px-6 py-4 text-sm font-bold text-muted-foreground">
             <span>Сервис</span>
             <span className="text-center">Период</span>
             <span className="text-right">Цена</span>
           </div>
           {plans.map((p, i) => (
-            <div key={i} className="grid grid-cols-3 border-t border-border px-6 py-4 transition-all duration-200 hover:bg-secondary/30 hover:shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.12)]">
-              <span className="flex items-center gap-2 font-medium text-foreground">
+            <motion.div
+              key={i}
+              className="grid grid-cols-3 items-center border-t border-border/40 px-6 py-4 transition-all duration-300 hover:bg-primary/5"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.03 }}
+            >
+              <span className="flex items-center gap-2 font-semibold text-foreground">
                 {p.name}
-                {p.hot && <span className="rounded-full border border-primary/25 bg-primary/15 px-2 py-0.5 text-xs font-semibold text-primary">Хит</span>}
+                {p.hot && (
+                  <span className="rounded-full border border-primary/30 bg-primary/15 px-2.5 py-0.5 text-xs font-bold text-primary shadow-[0_0_20px_hsl(var(--primary)/0.2)]">
+                    Хит
+                  </span>
+                )}
               </span>
               <span className="text-center text-muted-foreground">{p.period}</span>
-              <span className="text-right font-semibold text-foreground">{p.price}</span>
-            </div>
+              <span className="text-right font-bold text-foreground">{p.price}</span>
+            </motion.div>
           ))}
         </div>
       </div>
 
-      <p className="mt-6 text-center text-sm text-muted-foreground">Нет нужного сервиса? Напишите нам — подключим нужный тариф вручную.</p>
+      <p className="mt-8 text-center text-sm text-muted-foreground">
+        Нет нужного сервиса? <a href="https://t.me/nowsub_ru?direct" target="_blank" rel="noreferrer" className="font-semibold text-primary hover:underline">Напишите нам</a> — подключим любой.
+      </p>
     </div>
   </section>
 );
