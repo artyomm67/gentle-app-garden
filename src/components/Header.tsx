@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, Calculator, ChevronDown, FileText, Menu, MessageSquare, Newspaper, Send, X } from "lucide-react";
+import { Bot, Calculator, ChevronDown, FileText, Menu, MessageSquare, Newspaper, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { articles } from "@/data/siteContent";
 
 const navLinks = [
-  { label: "Цены", href: "/#pricing" },
-  { label: "Калькулятор", href: "/#calculator" },
-  { label: "Процесс", href: "/#process" },
+  { label: "Как это работает", href: "/#process" },
+  { label: "Преимущества", href: "/#benefits" },
+  { label: "Кейсы", href: "/#use-cases" },
   { label: "Отзывы", href: "/#reviews" },
   { label: "Контакты", href: "/#contacts" },
 ];
@@ -41,20 +41,18 @@ const Header = () => {
 
         <div className="flex items-center gap-2">
           <motion.a
-            href="https://t.me/nowsub_bot"
-            target="_blank"
-            rel="noreferrer"
-            className="button-secondary-glow hidden sm:inline-flex h-10 items-center justify-center rounded-xl border border-border bg-secondary/80 px-4 text-sm font-semibold text-secondary-foreground"
+            href="/#calculator"
+            className="button-glow hidden sm:inline-flex h-11 items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground"
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
           >
-            <Bot className="mr-2 h-4 w-4" /> Бот
+            <Calculator className="mr-2 h-4 w-4" /> Рассчитать
           </motion.a>
           <motion.a
             href="https://t.me/nowsub_ru?direct"
             target="_blank"
             rel="noreferrer"
-            className="button-glow hidden sm:inline-flex h-10 items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground"
+            className="button-secondary-glow hidden sm:inline-flex h-11 items-center justify-center rounded-xl border border-border bg-secondary/80 px-4 text-sm font-semibold text-secondary-foreground"
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -122,6 +120,7 @@ const Header = () => {
                 {[
                   { href: "https://t.me/nowsub_bot", icon: Bot, label: "Бот", external: true },
                   { href: "/#calculator", icon: Calculator, label: "Калькулятор" },
+                  { href: "/#pricing", icon: FileText, label: "Цены" },
                   { href: "/#reviews", icon: MessageSquare, label: "Отзывы" },
                   { href: "/#contacts", icon: FileText, label: "Контакты" },
                 ].map((item) => (
@@ -140,20 +139,18 @@ const Header = () => {
 
               <div className="mt-auto space-y-3 border-t border-border/40 px-4 pt-5">
                 <a
-                  href="https://t.me/nowsub_ru?direct"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/#calculator"
                   className="button-glow flex w-full items-center justify-center rounded-2xl bg-primary px-5 py-4 font-bold text-primary-foreground"
                 >
-                  <Send className="mr-2 h-4 w-4" /> Написать в Telegram
+                  <Calculator className="mr-2 h-4 w-4" /> Рассчитать стоимость
                 </a>
                 <a
-                  href="https://t.me/nowsub_bot"
+                  href="https://t.me/nowsub_ru?direct"
                   target="_blank"
                   rel="noreferrer"
                   className="button-secondary-glow flex w-full items-center justify-center rounded-2xl border border-border bg-secondary/80 px-5 py-4 font-bold text-secondary-foreground"
                 >
-                  <Bot className="mr-2 h-4 w-4" /> Открыть бота
+                  <Send className="mr-2 h-4 w-4" /> Написать в Telegram
                 </a>
               </div>
             </SheetContent>
