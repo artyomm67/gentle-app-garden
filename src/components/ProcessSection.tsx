@@ -9,7 +9,7 @@ const steps = [
 ];
 
 const ProcessSection = () => (
-  <section id="process" className="py-8 md:py-14">
+  <section id="process" className="py-10 md:py-16">
     <div className="container">
       <p className="text-sm text-primary font-semibold mb-1">Как это работает</p>
       <h2 className="text-2xl md:text-3xl font-bold mb-8">Процесс оплаты</h2>
