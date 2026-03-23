@@ -12,7 +12,7 @@ const ScrollReveal = ({ children, delay = 0, direction = "up" }: ScrollRevealPro
 
   if (prefersReducedMotion) return <>{children}</>;
 
-  const axis = direction === "up" ? { y: 16 } : direction === "left" ? { x: -16 } : { x: 16 };
+  const axis = direction === "up" ? { y: 12 } : direction === "left" ? { x: -12 } : { x: 12 };
   const reset = direction === "up" ? { y: 0 } : { x: 0 };
 
   return (
@@ -20,7 +20,7 @@ const ScrollReveal = ({ children, delay = 0, direction = "up" }: ScrollRevealPro
       initial={{ opacity: 0, ...axis }}
       whileInView={{ opacity: 1, ...reset }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1], delay }}
       className="transform-gpu"
     >
       {children}
