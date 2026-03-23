@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, Calculator, ChevronDown, FileText, Menu, MessageSquare, Newspaper, Send, X } from "lucide-react";
+import { Bot, Calculator, ChevronDown, FileText, Menu, MessageSquare, Newspaper, Send, DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { articles } from "@/data/siteContent";
 
 const navLinks = [
-  { label: "Цены", href: "/#pricing" },
+  { label: "Цены", href: "/pricing" },
   { label: "Калькулятор", href: "/#calculator" },
   { label: "Процесс", href: "/#process" },
   { label: "Отзывы", href: "/#reviews" },
@@ -22,21 +22,31 @@ const Header = () => {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border/40 bg-background/60 backdrop-blur-2xl">
       <div className="container flex h-20 items-center justify-between gap-4">
-        <Link to="/" className="group font-display text-2xl font-black tracking-[0.12em] md:text-3xl">
-          <span className="text-foreground transition-colors group-hover:text-foreground/80">NOW</span>
-          <span className="text-primary brand-glow transition-all">SUB</span>
+        <Link to="/" className="group font-display text-2xl font-black tracking-[0.12em] md:text-[2rem]">
+          <span className="text-foreground transition-colors group-hover:text-primary/80">NOW</span>
+          <span className="text-primary transition-all group-hover:drop-shadow-[0_0_24px_hsl(var(--primary)/0.7)]" style={{ textShadow: "0 0 30px hsl(268 86% 68% / 0.4)" }}>SUB</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border/50 bg-card/40 px-2 py-2 backdrop-blur-xl">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith("/") && !link.href.startsWith("/#") ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -44,11 +54,11 @@ const Header = () => {
             href="https://t.me/nowsub_bot"
             target="_blank"
             rel="noreferrer"
-            className="button-secondary-glow hidden sm:inline-flex h-10 items-center justify-center rounded-xl border border-border bg-secondary/80 px-4 text-sm font-semibold text-secondary-foreground"
+            className="hidden sm:inline-flex h-10 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 px-4 text-sm font-semibold text-foreground shadow-[0_0_20px_hsl(var(--primary)/0.1)] transition-all hover:shadow-[0_0_30px_hsl(var(--primary)/0.2)]"
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
           >
-            <Bot className="mr-2 h-4 w-4" /> Бот
+            <Bot className="mr-2 h-4 w-4 text-primary" /> Бот
           </motion.a>
           <motion.a
             href="https://t.me/nowsub_ru?direct"
@@ -118,6 +128,14 @@ const Header = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
+
+                <Link
+                  to="/pricing"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 rounded-2xl border border-primary/30 bg-primary/10 px-4 py-4 font-semibold text-primary transition-colors hover:bg-primary/15"
+                >
+                  <DollarSign className="h-4 w-4 icon-glow" /> Цены
+                </Link>
 
                 {[
                   { href: "https://t.me/nowsub_bot", icon: Bot, label: "Бот", external: true },
