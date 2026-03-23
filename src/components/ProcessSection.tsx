@@ -9,35 +9,31 @@ const steps = [
 ];
 
 const ProcessSection = () => (
-  <section id="process" className="py-24">
+  <section id="process" className="py-14 md:py-20">
     <div className="container">
-      <p className="text-sm text-primary font-semibold mb-2">Как это работает</p>
-      <h2 className="text-3xl md:text-4xl font-bold mb-14">Процесс оплаты</h2>
+      <p className="text-sm text-primary font-semibold mb-1">Как это работает</p>
+      <h2 className="text-2xl md:text-3xl font-bold mb-10">Процесс оплаты</h2>
 
-      <div className="grid gap-6 md:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-4">
         {steps.map((s, i) => (
           <motion.div
             key={s.num}
-            className="glass-card-glow group relative rounded-[1.5rem] p-6"
-            initial={{ opacity: 0, y: 20 }}
+            className="glass-card-glow group rounded-[1.25rem] p-5"
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ y: -4, scale: 1.02 }}
+            transition={{ delay: i * 0.08, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -3 }}
           >
-            <div className="mb-5 flex items-center justify-between">
-              <motion.div
-                className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary icon-glow"
-                whileHover={{ rotate: 8, scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              >
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/12 text-primary icon-glow">
                 <s.icon className="h-5 w-5" />
-              </motion.div>
-              <span className="text-3xl font-black text-primary/15">{String(s.num).padStart(2, '0')}</span>
+              </div>
+              <span className="text-2xl font-black text-primary/12">{String(s.num).padStart(2, '0')}</span>
             </div>
-            <div className="mb-4 h-1 w-12 rounded-full bg-primary/25 transition-all duration-500 group-hover:w-20 group-hover:bg-primary" />
-            <h3 className="mb-2 text-lg font-bold text-foreground">{s.title}</h3>
-            <p className="text-sm font-medium text-muted-foreground">{s.desc}</p>
+            <div className="mb-3 h-0.5 w-10 rounded-full bg-primary/20 transition-all duration-300 group-hover:w-16 group-hover:bg-primary/50" />
+            <h3 className="mb-1 text-base font-bold text-foreground">{s.title}</h3>
+            <p className="text-sm text-muted-foreground">{s.desc}</p>
           </motion.div>
         ))}
       </div>

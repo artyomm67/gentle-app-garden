@@ -6,6 +6,7 @@ import Index from "./pages/Index.tsx";
 import ArticlePage from "./pages/ArticlePage.tsx";
 import LegalPage from "./pages/LegalPage.tsx";
 import PricingPage from "./pages/PricingPage.tsx";
+import ReviewsPage from "./pages/ReviewsPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -18,6 +19,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/articles/:slug" element={<ArticlePage />} />
           <Route path="/privacy" element={<LegalPage />} />
           <Route path="/offer" element={<LegalPage />} />

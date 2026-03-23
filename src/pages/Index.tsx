@@ -3,8 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import ServiceMarquee from "@/components/ServiceMarquee";
 import CalculatorSection from "@/components/CalculatorSection";
 import ProcessSection from "@/components/ProcessSection";
-import ReviewsSection from "@/components/ReviewsSection";
-import FAQSection from "@/components/FAQSection";
 import CTAFooter from "@/components/CTAFooter";
 import ScrollReveal from "@/components/ScrollReveal";
 import SiteBackdrop from "@/components/SiteBackdrop";
@@ -17,22 +15,16 @@ const Index = () => (
       <ScrollReveal>
         <HeroSection />
       </ScrollReveal>
-      <ScrollReveal delay={0.05}>
+      <ScrollReveal delay={0.04}>
         <ServiceMarquee />
       </ScrollReveal>
-      <ScrollReveal delay={0.08}>
+      <ScrollReveal delay={0.06}>
         <CalculatorSection />
       </ScrollReveal>
-      <ScrollReveal delay={0.1}>
+      <ScrollReveal delay={0.08}>
         <ProcessSection />
       </ScrollReveal>
-      <ScrollReveal delay={0.12}>
-        <ReviewsSection />
-      </ScrollReveal>
-      <ScrollReveal delay={0.14}>
-        <FAQSection />
-      </ScrollReveal>
-      <ScrollReveal delay={0.16}>
+      <ScrollReveal delay={0.1}>
         <CTAFooter />
       </ScrollReveal>
     </main>
