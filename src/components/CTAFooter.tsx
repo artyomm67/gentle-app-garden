@@ -3,7 +3,7 @@ import { Bot, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const CTAFooter = () => (
-  <section id="contacts" className="py-12">
+  <section id="contacts" className="py-8 md:py-12">
     <div className="container max-w-3xl">
       {/* CTA */}
       <motion.div

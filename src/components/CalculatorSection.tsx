@@ -18,7 +18,7 @@ const CalculatorSection = () => {
   const total = Math.round(baseRub + commission);
 
   return (
-    <section id="calculator" className="py-12 md:py-16">
+    <section id="calculator" className="py-8 md:py-14">
       <div className="container max-w-2xl">
         <p className="text-sm text-primary font-semibold mb-1">Инструменты</p>
         <h2 className="text-2xl md:text-3xl font-bold mb-6">Калькулятор комиссии</h2>

@@ -40,7 +40,7 @@ const HeroSection = () => {
   }, [displayText, isDeleting, phraseIndex]);
 
   return (
-    <section className="relative overflow-hidden pt-20 pb-10 md:pt-32 md:pb-20">
+    <section className="relative overflow-hidden pt-20 pb-6 md:pt-32 md:pb-16">
       <div className="container grid items-center gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
         {/* Left — on mobile: card first, then text */}
         <div className="order-2 lg:order-1">
