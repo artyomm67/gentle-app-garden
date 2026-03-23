@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, Calculator, ChevronDown, FileText, Menu, MessageSquare, Newspaper, Send, DollarSign } from "lucide-react";
+import { Bot, Calculator, ChevronDown, FileText, Menu, MessageSquare, Newspaper, Send, DollarSign, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { articles } from "@/data/siteContent";
 
 const navLinks = [
@@ -54,7 +53,7 @@ const Header = () => {
             href="https://t.me/nowsub_bot"
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex h-9 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 px-4 text-sm font-semibold text-foreground"
+            className="hidden sm:inline-flex h-10 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 px-5 text-sm font-semibold text-foreground"
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -64,48 +63,77 @@ const Header = () => {
             href="https://t.me/nowsub_ru?direct"
             target="_blank"
             rel="noreferrer"
-            className="button-glow hidden sm:inline-flex h-9 items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground"
+            className="button-glow hidden sm:inline-flex h-10 items-center justify-center rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground"
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
           >
             <Send className="mr-2 h-4 w-4" /> Telegram
           </motion.a>
 
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <motion.button
-                type="button"
-                className="button-glow inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground"
-                aria-label="Открыть меню"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Menu className="h-5 w-5" />
-              </motion.button>
-            </SheetTrigger>
+          {/* Burger */}
+          <motion.button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-card/60 border border-border/50 text-foreground lg:hidden"
+            aria-label="Открыть меню"
+            onClick={() => setOpen(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Menu className="h-5 w-5" />
+          </motion.button>
+        </div>
+      </div>
 
-            <SheetContent side="right" className="w-[85vw] border-border/50 bg-background/95 backdrop-blur-2xl px-0 sm:max-w-sm">
-              <div className="px-5 pb-4 pt-8">
-                <SheetTitle className="font-display text-xl">Меню</SheetTitle>
+      {/* Mobile menu — custom slide panel (no Sheet overlay) */}
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 z-[60] bg-background/40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setOpen(false)}
+            />
+            {/* Panel */}
+            <motion.div
+              className="fixed top-0 right-0 bottom-0 z-[70] w-[80vw] max-w-sm border-l border-border/40 bg-background/95 backdrop-blur-2xl flex flex-col"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="flex items-center justify-between px-5 pt-6 pb-3">
+                <span className="font-display text-lg font-bold">Меню</span>
+                <motion.button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="h-9 w-9 flex items-center justify-center rounded-lg bg-card/60 border border-border/50 text-foreground"
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="h-4 w-4" />
+                </motion.button>
               </div>
 
-              <div className="space-y-1.5 px-3 pb-4">
+              <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-1.5">
                 <button
                   type="button"
                   onClick={() => setPopularOpen((v) => !v)}
                   className="flex w-full items-center justify-between rounded-xl border border-border/60 bg-card/60 px-3.5 py-3 text-left font-semibold text-foreground text-sm transition-colors hover:bg-card/80"
                 >
                   <span className="flex items-center gap-2.5"><Newspaper className="h-4 w-4 text-primary icon-glow" /> Популярное</span>
-                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${popularOpen ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${popularOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 <AnimatePresence>
                   {popularOpen && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
                       <div className="rounded-xl border border-border/40 bg-card/50 p-1.5">
@@ -166,7 +194,7 @@ const Header = () => {
                 )}
               </div>
 
-              <div className="mt-auto space-y-2 border-t border-border/40 px-3 pt-4">
+              <div className="space-y-2 border-t border-border/40 px-4 py-4">
                 <a
                   href="https://t.me/nowsub_ru?direct"
                   target="_blank"
@@ -184,10 +212,10 @@ const Header = () => {
                   <Bot className="mr-2 h-4 w-4" /> Открыть бота
                 </a>
               </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
