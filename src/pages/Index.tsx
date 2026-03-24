@@ -15,16 +15,16 @@ const Index = () => (
       <ScrollReveal>
         <HeroSection />
       </ScrollReveal>
-      <ScrollReveal delay={0.03}>
+      <ScrollReveal delay={0.02}>
         <ServiceMarquee />
       </ScrollReveal>
-      <ScrollReveal delay={0.04}>
+      <ScrollReveal delay={0.03}>
         <CalculatorSection />
       </ScrollReveal>
-      <ScrollReveal delay={0.05}>
+      <ScrollReveal delay={0.04}>
         <ProcessSection />
       </ScrollReveal>
-      <ScrollReveal delay={0.06}>
+      <ScrollReveal delay={0.05}>
         <CTAFooter />
       </ScrollReveal>
     </main>
