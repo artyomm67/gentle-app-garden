@@ -3,12 +3,9 @@ import { motion } from "framer-motion";
 import { Bot, Send } from "lucide-react";
 
 const currencies = [
-  { code: "USD", label: "Доллар ($)", symbol: "$", rate: 91.77 },
-  { code: "EUR", label: "Евро (€)", symbol: "€", rate: 99.5 },
-  { code: "GBP", label: "Фунт (£)", symbol: "£", rate: 116.2 },
-  { code: "CHF", label: "Франк (₣)", symbol: "₣", rate: 105.3 },
-  { code: "JPY", label: "Иена (¥)", symbol: "¥", rate: 0.61 },
-  { code: "TRY", label: "Лира (₺)", symbol: "₺", rate: 2.65 },
+  { code: "USD", label: "Доллар ($)", rate: 91.77 },
+  { code: "EUR", label: "Евро (€)", rate: 99.5 },
+  { code: "GBP", label: "Фунт (£)", rate: 116.2 },
 ];
 
 const CalculatorSection = () => {
@@ -21,33 +18,33 @@ const CalculatorSection = () => {
   const total = Math.round(baseRub + commission);
 
   return (
-    <section id="calculator" className="py-6 md:py-10">
+    <section id="calculator" className="py-12 md:py-16">
       <div className="container max-w-2xl">
-        <p className="text-xs text-primary font-semibold mb-0.5 uppercase tracking-wider">Инструменты</p>
-        <h2 className="text-xl md:text-2xl font-bold mb-4">Калькулятор комиссии</h2>
+        <p className="text-sm text-primary font-semibold mb-1">Инструменты</p>
+        <h2 className="text-2xl md:text-3xl font-bold mb-6">Калькулятор комиссии</h2>
 
-        <div className="glass-card-glow space-y-3 rounded-[1.5rem] p-4 md:p-6">
+        <div className="glass-card-glow space-y-4 rounded-[1.5rem] p-5 md:p-7">
           <div>
-            <label className="block text-xs font-medium text-muted-foreground mb-1">Введите сумму</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Введите сумму</label>
             <input
               type="number"
               min={1}
               value={amount}
               onChange={(e) => setAmount(Number(e.target.value))}
-              className="w-full rounded-xl border border-border bg-secondary/60 px-4 py-3 text-3xl font-black text-foreground tabular-nums tracking-tight transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50"
+              className="w-full rounded-xl border border-border bg-secondary/60 px-4 py-3 text-2xl font-black text-foreground tabular-nums tracking-tight transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-muted-foreground mb-1">Валюта</label>
-            <div className="grid grid-cols-3 gap-1.5 md:grid-cols-6">
+            <label className="block text-sm font-medium text-muted-foreground mb-1.5">Валюта</label>
+            <div className="flex gap-2">
               {currencies.map((c) => (
                 <motion.button
                   key={c.code}
                   onClick={() => setCurrency(c.code)}
-                  className={`rounded-xl border py-2 text-sm font-bold transition-colors ${
+                  className={`flex-1 rounded-xl border py-2.5 text-sm font-bold transition-colors ${
                     currency === c.code
-                      ? "bg-primary text-primary-foreground border-primary shadow-[0_0_12px_hsl(268_86%_68%/0.3)]"
+                      ? "bg-primary text-primary-foreground border-primary"
                       : "bg-secondary/60 border-border text-secondary-foreground hover:bg-secondary/80"
                   }`}
                   whileTap={{ scale: 0.97 }}
@@ -58,18 +55,17 @@ const CalculatorSection = () => {
             </div>
           </div>
 
-          {/* Rate & Commission — large and prominent */}
+          {/* Rate & Commission — highlighted */}
           <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-2xl border border-primary/25 bg-primary/8 p-4 text-center">
-              <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-1">Курс</div>
-              <div className="text-2xl md:text-3xl font-black tabular-nums text-foreground">
-                {cur.rate}
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4 text-center">
+              <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Курс</div>
+              <div className="text-xl font-black tabular-nums text-foreground">
+                {cur.rate} <span className="text-sm font-semibold text-muted-foreground">₽/{cur.code}</span>
               </div>
-              <div className="text-xs text-muted-foreground mt-0.5">₽ за 1 {cur.code}</div>
             </div>
-            <div className="rounded-2xl border border-primary/25 bg-primary/8 p-4 text-center">
-              <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-1">Комиссия</div>
-              <div className="text-2xl md:text-3xl font-black tabular-nums text-foreground">
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4 text-center">
+              <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Комиссия</div>
+              <div className="text-lg font-black tabular-nums text-foreground">
                 {amount <= 30 ? "1 000 ₽" : "30%"}
               </div>
               <div className="text-xs text-muted-foreground mt-0.5">до 30$ — фикс</div>
@@ -77,13 +73,13 @@ const CalculatorSection = () => {
           </div>
 
           {/* Result */}
-          <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-primary/8 p-4 md:p-5">
+          <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-primary/8 p-5 md:p-6">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary-glow/5" />
-            <div className="relative flex flex-col items-center gap-0.5 text-center">
-              <span className="text-[10px] font-bold text-primary uppercase tracking-wider">Итоговая цена</span>
+            <div className="relative flex flex-col items-center gap-1 text-center">
+              <span className="text-xs font-bold text-primary uppercase tracking-wider">Итоговая цена</span>
               <motion.span
                 key={total}
-                className="text-4xl md:text-5xl font-black text-foreground tabular-nums tracking-tight"
+                className="text-5xl md:text-6xl font-black text-foreground tabular-nums tracking-tight"
                 initial={{ scale: 1.05, opacity: 0.6 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.2 }}
@@ -94,12 +90,12 @@ const CalculatorSection = () => {
             </div>
           </div>
 
-          <div className="grid gap-1.5 sm:grid-cols-2">
+          <div className="grid gap-2 sm:grid-cols-2">
             <motion.a
               href="https://t.me/nowsub_ru?direct"
               target="_blank"
               rel="noreferrer"
-              className="button-glow flex items-center justify-center gap-2 rounded-xl bg-primary py-2.5 text-sm font-bold text-primary-foreground"
+              className="button-glow flex items-center justify-center gap-2 rounded-xl bg-primary py-3 text-sm font-bold text-primary-foreground"
               whileHover={{ y: -1 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -109,7 +105,7 @@ const CalculatorSection = () => {
               href="https://t.me/nowsub_bot"
               target="_blank"
               rel="noreferrer"
-              className="button-secondary-glow flex items-center justify-center gap-2 rounded-xl border border-primary/25 bg-primary/10 py-2.5 text-sm font-bold text-foreground"
+              className="button-secondary-glow flex items-center justify-center gap-2 rounded-xl border border-primary/25 bg-primary/10 py-3 text-sm font-bold text-foreground"
               whileHover={{ y: -1 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -117,7 +113,7 @@ const CalculatorSection = () => {
             </motion.a>
           </div>
 
-          <div className="rounded-xl border border-primary/15 bg-primary/5 p-2.5 text-sm">
+          <div className="rounded-xl border border-primary/15 bg-primary/5 p-3 text-sm">
             <span className="font-bold text-primary">Гарантия:</span>{" "}
             <span className="text-muted-foreground">Возврат средств если подписка не активирована</span>
           </div>

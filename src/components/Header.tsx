@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, Calculator, ChevronDown, FileText, Menu, MessageSquare, Newspaper, Send, DollarSign, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { articles } from "@/data/siteContent";
 
 const navLinks = [
@@ -17,38 +17,22 @@ const popularLinks = articles.slice(0, 4);
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [popularOpen, setPopularOpen] = useState(false);
-  const location = useLocation();
-
-  // Close menu on route change
-  useEffect(() => {
-    setOpen(false);
-  }, [location.pathname]);
-
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [open]);
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border/40 bg-background/60 backdrop-blur-2xl">
-      <div className="container flex h-14 items-center justify-between gap-3 md:h-16">
-        <Link to="/" className="group font-display text-xl font-black tracking-[0.12em] md:text-2xl">
+      <div className="container flex h-16 items-center justify-between gap-4 md:h-20">
+        <Link to="/" className="group font-display text-2xl font-black tracking-[0.12em] md:text-[2.25rem]">
           <span className="text-foreground transition-colors group-hover:text-primary/80">NOW</span>
           <span className="text-primary brand-glow transition-all group-hover:brightness-125">SUB</span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-0.5 rounded-full border border-border/50 bg-card/40 px-1.5 py-1 backdrop-blur-xl">
+        <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border/50 bg-card/40 px-2 py-1.5 backdrop-blur-xl">
           {navLinks.map((link) =>
             link.href.startsWith("/") && !link.href.startsWith("/#") ? (
               <Link
                 key={link.href}
                 to={link.href}
-                className="rounded-full px-3.5 py-1.5 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
+                className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
               >
                 {link.label}
               </Link>
@@ -56,7 +40,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-full px-3.5 py-1.5 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
+                className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
               >
                 {link.label}
               </a>
@@ -69,81 +53,79 @@ const Header = () => {
             href="https://t.me/nowsub_bot"
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex h-9 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 px-4 text-sm font-semibold text-foreground min-w-[110px]"
+            className="hidden sm:inline-flex h-10 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 px-5 text-sm font-semibold text-foreground"
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
           >
-            <Bot className="mr-1.5 h-4 w-4 text-primary" /> Бот
+            <Bot className="mr-2 h-4 w-4 text-primary" /> Бот
           </motion.a>
           <motion.a
             href="https://t.me/nowsub_ru?direct"
             target="_blank"
             rel="noreferrer"
-            className="button-glow hidden sm:inline-flex h-9 items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground min-w-[110px]"
+            className="button-glow hidden sm:inline-flex h-10 items-center justify-center rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground"
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
           >
-            <Send className="mr-1.5 h-4 w-4" /> Telegram
+            <Send className="mr-2 h-4 w-4" /> Telegram
           </motion.a>
 
           {/* Burger */}
           <motion.button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-card/60 border border-border/50 text-foreground lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-card/60 border border-border/50 text-foreground lg:hidden"
             aria-label="Открыть меню"
             onClick={() => setOpen(true)}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <Menu className="h-5 w-5" />
           </motion.button>
         </div>
       </div>
 
-      {/* Mobile menu — smooth slide panel */}
-      <AnimatePresence mode="wait">
+      {/* Mobile menu — custom slide panel (no Sheet overlay) */}
+      <AnimatePresence>
         {open && (
           <>
+            {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
+              className="fixed inset-0 z-[60] bg-background/40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
             />
+            {/* Panel */}
             <motion.div
-              className="fixed top-0 right-0 bottom-0 z-[70] w-[75vw] max-w-xs border-l border-primary/10 bg-background/98 backdrop-blur-3xl flex flex-col"
-              initial={{ x: "100%", opacity: 0.5 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0 }}
-              transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.8 }}
+              className="fixed top-0 right-0 bottom-0 z-[70] w-[80vw] max-w-sm border-l border-border/40 bg-background/95 backdrop-blur-2xl flex flex-col"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="flex items-center justify-between px-4 pt-5 pb-2">
-                <span className="font-display text-base font-bold text-primary">Меню</span>
+              <div className="flex items-center justify-between px-5 pt-6 pb-3">
+                <span className="font-display text-lg font-bold">Меню</span>
                 <motion.button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="h-8 w-8 flex items-center justify-center rounded-lg bg-primary/10 text-primary"
-                  whileTap={{ scale: 0.85, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
+                  className="h-9 w-9 flex items-center justify-center rounded-lg bg-card/60 border border-border/50 text-foreground"
+                  whileTap={{ scale: 0.9 }}
                 >
                   <X className="h-4 w-4" />
                 </motion.button>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-3 pb-3 space-y-1">
-                {/* Popular dropdown */}
-                <motion.button
+              <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-1.5">
+                <button
                   type="button"
                   onClick={() => setPopularOpen((v) => !v)}
-                  className="flex w-full items-center justify-between rounded-xl bg-card/80 px-3 py-2.5 text-left font-semibold text-foreground text-sm"
-                  whileTap={{ scale: 0.98 }}
+                  className="flex w-full items-center justify-between rounded-xl border border-border/60 bg-card/60 px-3.5 py-3 text-left font-semibold text-foreground text-sm transition-colors hover:bg-card/80"
                 >
-                  <span className="flex items-center gap-2"><Newspaper className="h-4 w-4 text-primary" /> Популярное</span>
-                  <motion.span animate={{ rotate: popularOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                  </motion.span>
-                </motion.button>
+                  <span className="flex items-center gap-2.5"><Newspaper className="h-4 w-4 text-primary icon-glow" /> Популярное</span>
+                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${popularOpen ? "rotate-180" : ""}`} />
+                </button>
 
                 <AnimatePresence>
                   {popularOpen && (
@@ -151,26 +133,23 @@ const Header = () => {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="rounded-xl bg-card/50 p-1">
-                        {popularLinks.map((article, i) => (
-                          <motion.div
+                      <div className="rounded-xl border border-border/40 bg-card/50 p-1.5">
+                        {popularLinks.map((article) => (
+                          <Link
                             key={article.slug}
-                            initial={{ opacity: 0, x: -8 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: i * 0.05, duration: 0.2 }}
+                            to={`/articles/${article.slug}`}
+                            onClick={() => setOpen(false)}
+                            className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-primary/10"
                           >
-                            <Link
-                              to={`/articles/${article.slug}`}
-                              onClick={() => setOpen(false)}
-                              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-foreground/90 transition-colors hover:bg-primary/10"
-                            >
-                              <span className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                            <span className="flex items-center gap-2.5">
+                              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                               {article.service}
-                            </Link>
-                          </motion.div>
+                            </span>
+                            <span className="text-primary/50">→</span>
+                          </Link>
                         ))}
                       </div>
                     </motion.div>
@@ -180,9 +159,9 @@ const Header = () => {
                 <Link
                   to="/pricing"
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 rounded-xl bg-primary/10 border border-primary/20 px-3 py-2.5 text-sm font-semibold text-primary"
+                  className="flex items-center gap-2.5 rounded-xl border border-primary/30 bg-primary/10 px-3.5 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary/15"
                 >
-                  <DollarSign className="h-4 w-4" /> Цены
+                  <DollarSign className="h-4 w-4 icon-glow" /> Цены
                 </Link>
 
                 {[
@@ -190,51 +169,47 @@ const Header = () => {
                   { href: "/#calculator", icon: Calculator, label: "Калькулятор" },
                   { href: "/reviews", icon: MessageSquare, label: "Отзывы", isLink: true },
                   { href: "/#contacts", icon: FileText, label: "Контакты" },
-                ].map((item, i) => {
-                  const cls = "flex items-center gap-2 rounded-xl bg-card/60 px-3 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-card/80";
-                  return (
-                    <motion.div
+                ].map((item) =>
+                  item.isLink ? (
+                    <Link
                       key={item.label}
-                      initial={{ opacity: 0, y: 4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.05 + i * 0.03, duration: 0.2 }}
+                      to={item.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-2.5 rounded-xl border border-border/60 bg-card/60 px-3.5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-card/80"
                     >
-                      {item.isLink ? (
-                        <Link to={item.href} onClick={() => setOpen(false)} className={cls}>
-                          <item.icon className="h-4 w-4 text-primary" /> {item.label}
-                        </Link>
-                      ) : (
-                        <a
-                          href={item.href}
-                          target={item.external ? "_blank" : undefined}
-                          rel={item.external ? "noreferrer" : undefined}
-                          onClick={() => !item.external && setOpen(false)}
-                          className={cls}
-                        >
-                          <item.icon className="h-4 w-4 text-primary" /> {item.label}
-                        </a>
-                      )}
-                    </motion.div>
-                  );
-                })}
+                      <item.icon className="h-4 w-4 text-primary icon-glow" /> {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noreferrer" : undefined}
+                      onClick={() => !item.external && setOpen(false)}
+                      className="flex items-center gap-2.5 rounded-xl border border-border/60 bg-card/60 px-3.5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-card/80"
+                    >
+                      <item.icon className="h-4 w-4 text-primary icon-glow" /> {item.label}
+                    </a>
+                  )
+                )}
               </div>
 
-              <div className="space-y-1.5 border-t border-border/30 px-3 py-3">
+              <div className="space-y-2 border-t border-border/40 px-4 py-4">
                 <a
                   href="https://t.me/nowsub_ru?direct"
                   target="_blank"
                   rel="noreferrer"
-                  className="button-glow flex w-full items-center justify-center rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground"
+                  className="button-glow flex w-full items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground"
                 >
-                  <Send className="mr-1.5 h-4 w-4" /> Написать в Telegram
+                  <Send className="mr-2 h-4 w-4" /> Написать в Telegram
                 </a>
                 <a
                   href="https://t.me/nowsub_bot"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex w-full items-center justify-center rounded-xl border border-border/50 bg-card/60 px-4 py-2.5 text-sm font-bold text-foreground"
+                  className="button-secondary-glow flex w-full items-center justify-center rounded-xl border border-border bg-secondary/80 px-4 py-3 text-sm font-bold text-secondary-foreground"
                 >
-                  <Bot className="mr-1.5 h-4 w-4 text-primary" /> Открыть бота
+                  <Bot className="mr-2 h-4 w-4" /> Открыть бота
                 </a>
               </div>
             </motion.div>

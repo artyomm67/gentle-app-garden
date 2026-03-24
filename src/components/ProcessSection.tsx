@@ -9,31 +9,31 @@ const steps = [
 ];
 
 const ProcessSection = () => (
-  <section id="process" className="py-6 md:py-10">
+  <section id="process" className="py-10 md:py-16">
     <div className="container">
-      <p className="text-xs text-primary font-semibold mb-0.5 uppercase tracking-wider">Как это работает</p>
-      <h2 className="text-xl md:text-2xl font-bold mb-5">Процесс оплаты</h2>
+      <p className="text-sm text-primary font-semibold mb-1">Как это работает</p>
+      <h2 className="text-2xl md:text-3xl font-bold mb-8">Процесс оплаты</h2>
 
-      <div className="grid gap-2 md:grid-cols-4">
+      <div className="grid gap-3 md:grid-cols-4">
         {steps.map((s, i) => (
           <motion.div
             key={s.num}
-            className="glass-card-glow group rounded-[1.25rem] p-3"
+            className="glass-card-glow group rounded-[1.25rem] p-4"
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -3 }}
           >
-            <div className="mb-2 flex items-center justify-between">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/12 text-primary">
-                <s.icon className="h-4 w-4" />
+            <div className="mb-3 flex items-center justify-between">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/12 text-primary icon-glow">
+                <s.icon className="h-5 w-5" />
               </div>
-              <span className="text-xl font-black text-primary/12">{String(s.num).padStart(2, '0')}</span>
+              <span className="text-2xl font-black text-primary/12">{String(s.num).padStart(2, '0')}</span>
             </div>
-            <div className="mb-1.5 h-0.5 w-8 rounded-full bg-primary/20 transition-all duration-300 group-hover:w-14 group-hover:bg-primary/50" />
-            <h3 className="mb-0.5 text-sm font-bold text-foreground">{s.title}</h3>
-            <p className="text-xs text-muted-foreground">{s.desc}</p>
+            <div className="mb-2 h-0.5 w-10 rounded-full bg-primary/20 transition-all duration-300 group-hover:w-16 group-hover:bg-primary/50" />
+            <h3 className="mb-1 text-base font-bold text-foreground">{s.title}</h3>
+            <p className="text-sm text-muted-foreground">{s.desc}</p>
           </motion.div>
         ))}
       </div>
