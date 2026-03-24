@@ -3,11 +3,10 @@ import { Bot, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const CTAFooter = () => (
-  <section id="contacts" className="py-12">
+  <section id="contacts" className="py-6 md:py-10">
     <div className="container max-w-3xl">
-      {/* CTA */}
       <motion.div
-        className="glass-card-glow rounded-[1.5rem] p-7 text-center mb-8 relative overflow-hidden"
+        className="glass-card-glow rounded-[1.5rem] p-5 md:p-6 text-center mb-5 relative overflow-hidden"
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -15,16 +14,16 @@ const CTAFooter = () => (
       >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/4 via-transparent to-primary-glow/4" />
         <div className="relative">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Готовы подключить сервис?</h2>
-          <p className="text-muted-foreground mb-5 max-w-md mx-auto text-sm">
+          <h2 className="text-xl md:text-2xl font-bold mb-1.5">Готовы подключить сервис?</h2>
+          <p className="text-muted-foreground mb-4 max-w-md mx-auto text-sm">
             Активируем подписку за 5–10 минут по выгодному курсу. Без скрытых комиссий.
           </p>
-          <div className="flex flex-wrap justify-center gap-2.5">
+          <div className="flex flex-wrap justify-center gap-2">
             <motion.a
               href="https://t.me/nowsub_ru?direct"
               target="_blank"
               rel="noreferrer"
-              className="button-glow inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground"
+              className="button-glow inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -34,7 +33,7 @@ const CTAFooter = () => (
               href="https://t.me/nowsub_bot"
               target="_blank"
               rel="noreferrer"
-              className="button-secondary-glow inline-flex items-center gap-2 rounded-xl border border-border bg-secondary/80 px-6 py-3 text-sm font-bold text-secondary-foreground"
+              className="button-secondary-glow inline-flex items-center gap-2 rounded-xl border border-border bg-secondary/80 px-5 py-2.5 text-sm font-bold text-secondary-foreground"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -44,8 +43,8 @@ const CTAFooter = () => (
         </div>
       </motion.div>
 
-      {/* Contacts & Docs — elegant text links */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-sm mb-6">
+      {/* Elegant text links */}
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm mb-4">
         <a href="mailto:nowsub@mail.ru" className="font-semibold text-foreground/80 transition-all hover:text-primary hover:drop-shadow-[0_0_8px_hsl(268_86%_68%/0.4)]">
           nowsub@mail.ru
         </a>
@@ -61,7 +60,7 @@ const CTAFooter = () => (
       </div>
     </div>
 
-    <footer className="container pt-5 border-t border-border/30 text-center text-sm text-muted-foreground">
+    <footer className="container pt-4 border-t border-border/30 text-center text-xs text-muted-foreground">
       © 2026 NOWSUB. Все права защищены.
     </footer>
   </section>
