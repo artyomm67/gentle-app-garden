@@ -20,19 +20,20 @@ const Header = () => {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border/40 bg-background/60 backdrop-blur-2xl">
-      <div className="container flex h-16 items-center justify-between gap-4 md:h-20">
-        <Link to="/" className="group font-display text-2xl font-black tracking-[0.12em] md:text-[2.25rem]">
+      <div className="container flex h-14 items-center justify-between gap-3 md:h-16">
+        <Link to="/" className="group font-display text-xl font-black tracking-[0.12em] md:text-2xl">
           <span className="text-foreground transition-colors group-hover:text-primary/80">NOW</span>
           <span className="text-primary brand-glow transition-all group-hover:brightness-125">SUB</span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border/50 bg-card/40 px-2 py-1.5 backdrop-blur-xl">
+        {/* Desktop nav — visible on md+ */}
+        <nav className="hidden md:flex items-center gap-0.5 rounded-full border border-border/50 bg-card/40 px-1.5 py-1 backdrop-blur-xl">
           {navLinks.map((link) =>
             link.href.startsWith("/") && !link.href.startsWith("/#") ? (
               <Link
                 key={link.href}
                 to={link.href}
-                className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
+                className="rounded-full px-3.5 py-1.5 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
               >
                 {link.label}
               </Link>
@@ -40,7 +41,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
+                className="rounded-full px-3.5 py-1.5 text-sm font-semibold text-muted-foreground transition-all hover:bg-primary/10 hover:text-foreground"
               >
                 {link.label}
               </a>
@@ -53,27 +54,27 @@ const Header = () => {
             href="https://t.me/nowsub_bot"
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex h-10 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 px-5 text-sm font-semibold text-foreground"
+            className="hidden sm:inline-flex h-9 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 px-4 text-sm font-semibold text-foreground transition-colors hover:bg-primary/15"
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
           >
-            <Bot className="mr-2 h-4 w-4 text-primary" /> Бот
+            <Bot className="mr-1.5 h-4 w-4 text-primary" /> Бот
           </motion.a>
           <motion.a
             href="https://t.me/nowsub_ru?direct"
             target="_blank"
             rel="noreferrer"
-            className="button-glow hidden sm:inline-flex h-10 items-center justify-center rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground"
+            className="button-glow hidden sm:inline-flex h-9 items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground"
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
           >
-            <Send className="mr-2 h-4 w-4" /> Telegram
+            <Send className="mr-1.5 h-4 w-4" /> Telegram
           </motion.a>
 
-          {/* Burger */}
+          {/* Burger — only on mobile (<md) */}
           <motion.button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-card/60 border border-border/50 text-foreground lg:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-card/60 border border-border/50 text-foreground md:hidden"
             aria-label="Открыть меню"
             onClick={() => setOpen(true)}
             whileHover={{ scale: 1.05 }}
@@ -84,46 +85,44 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile menu — custom slide panel (no Sheet overlay) */}
+      {/* Mobile menu — slide panel */}
       <AnimatePresence>
         {open && (
           <>
-            {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-[60] bg-background/40"
+              className="fixed inset-0 z-[60] bg-black/50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
             />
-            {/* Panel */}
             <motion.div
-              className="fixed top-0 right-0 bottom-0 z-[70] w-[80vw] max-w-sm border-l border-border/40 bg-background/95 backdrop-blur-2xl flex flex-col"
+              className="fixed top-0 right-0 bottom-0 z-[70] w-[75vw] max-w-xs border-l border-border/40 bg-background/98 backdrop-blur-2xl flex flex-col"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="flex items-center justify-between px-5 pt-6 pb-3">
-                <span className="font-display text-lg font-bold">Меню</span>
+              <div className="flex items-center justify-between px-4 pt-5 pb-2">
+                <span className="font-display text-base font-bold">Меню</span>
                 <motion.button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="h-9 w-9 flex items-center justify-center rounded-lg bg-card/60 border border-border/50 text-foreground"
+                  className="h-8 w-8 flex items-center justify-center rounded-lg bg-card/60 border border-border/50 text-foreground"
                   whileTap={{ scale: 0.9 }}
                 >
                   <X className="h-4 w-4" />
                 </motion.button>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-1.5">
+              <div className="flex-1 overflow-y-auto px-3 pb-3 space-y-1">
                 <button
                   type="button"
                   onClick={() => setPopularOpen((v) => !v)}
-                  className="flex w-full items-center justify-between rounded-xl border border-border/60 bg-card/60 px-3.5 py-3 text-left font-semibold text-foreground text-sm transition-colors hover:bg-card/80"
+                  className="flex w-full items-center justify-between rounded-xl border border-border/60 bg-card/60 px-3 py-2.5 text-left font-semibold text-foreground text-sm transition-colors hover:bg-card/80"
                 >
-                  <span className="flex items-center gap-2.5"><Newspaper className="h-4 w-4 text-primary icon-glow" /> Популярное</span>
+                  <span className="flex items-center gap-2"><Newspaper className="h-4 w-4 text-primary" /> Популярное</span>
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${popularOpen ? "rotate-180" : ""}`} />
                 </button>
 
@@ -136,15 +135,15 @@ const Header = () => {
                       transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="rounded-xl border border-border/40 bg-card/50 p-1.5">
+                      <div className="rounded-xl border border-border/40 bg-card/50 p-1">
                         {popularLinks.map((article) => (
                           <Link
                             key={article.slug}
                             to={`/articles/${article.slug}`}
                             onClick={() => setOpen(false)}
-                            className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-primary/10"
+                            className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-primary/10"
                           >
-                            <span className="flex items-center gap-2.5">
+                            <span className="flex items-center gap-2">
                               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                               {article.service}
                             </span>
@@ -159,9 +158,9 @@ const Header = () => {
                 <Link
                   to="/pricing"
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-2.5 rounded-xl border border-primary/30 bg-primary/10 px-3.5 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary/15"
+                  className="flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-3 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary/15"
                 >
-                  <DollarSign className="h-4 w-4 icon-glow" /> Цены
+                  <DollarSign className="h-4 w-4" /> Цены
                 </Link>
 
                 {[
@@ -175,9 +174,9 @@ const Header = () => {
                       key={item.label}
                       to={item.href}
                       onClick={() => setOpen(false)}
-                      className="flex items-center gap-2.5 rounded-xl border border-border/60 bg-card/60 px-3.5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-card/80"
+                      className="flex items-center gap-2 rounded-xl border border-border/60 bg-card/60 px-3 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-card/80"
                     >
-                      <item.icon className="h-4 w-4 text-primary icon-glow" /> {item.label}
+                      <item.icon className="h-4 w-4 text-primary" /> {item.label}
                     </Link>
                   ) : (
                     <a
@@ -186,20 +185,20 @@ const Header = () => {
                       target={item.external ? "_blank" : undefined}
                       rel={item.external ? "noreferrer" : undefined}
                       onClick={() => !item.external && setOpen(false)}
-                      className="flex items-center gap-2.5 rounded-xl border border-border/60 bg-card/60 px-3.5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-card/80"
+                      className="flex items-center gap-2 rounded-xl border border-border/60 bg-card/60 px-3 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-card/80"
                     >
-                      <item.icon className="h-4 w-4 text-primary icon-glow" /> {item.label}
+                      <item.icon className="h-4 w-4 text-primary" /> {item.label}
                     </a>
                   )
                 )}
               </div>
 
-              <div className="space-y-2 border-t border-border/40 px-4 py-4">
+              <div className="space-y-1.5 border-t border-border/40 px-3 py-3">
                 <a
                   href="https://t.me/nowsub_ru?direct"
                   target="_blank"
                   rel="noreferrer"
-                  className="button-glow flex w-full items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground"
+                  className="button-glow flex w-full items-center justify-center rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground"
                 >
                   <Send className="mr-2 h-4 w-4" /> Написать в Telegram
                 </a>
@@ -207,7 +206,7 @@ const Header = () => {
                   href="https://t.me/nowsub_bot"
                   target="_blank"
                   rel="noreferrer"
-                  className="button-secondary-glow flex w-full items-center justify-center rounded-xl border border-border bg-secondary/80 px-4 py-3 text-sm font-bold text-secondary-foreground"
+                  className="button-secondary-glow flex w-full items-center justify-center rounded-xl border border-border bg-secondary/80 px-4 py-2.5 text-sm font-bold text-secondary-foreground"
                 >
                   <Bot className="mr-2 h-4 w-4" /> Открыть бота
                 </a>
